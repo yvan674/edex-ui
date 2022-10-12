@@ -122,8 +122,9 @@ Thanks! If you feel like it, you can [follow me on Twitter](https://gaby.dev/twi
 
 **IMPORTANT NOTE:** the following instructions are meant for running eDEX from the latest unoptimized, unreleased, development version. If you'd like to get stable software instead, refer to [these](#how-do-i-get-it) instructions.
 
+
 #### Starting from source:
-on *nix systems (You'll need the Xcode command line tools on macOS):
+on *nix systems:
 - clone the repository
 - `npm run install-linux`
 - `npm run start`
@@ -138,9 +139,21 @@ on Windows:
 Note: Due to native modules, you can only build targets for the host OS you are using.
 
 - `npm install` (NOT `install-linux` or `install-windows`)
-- `npm run build-linux` or `build-windows` or `build-darwin`
+- `npm run build-linux` or `build-windows`
 
 The script will minify the source code, recompile native dependencies and create distributable assets in the `dist` folder.
+
+#### For M1 Macs
+
+On M1 Macs, the build process is a bit strange (You'll need the Xcode command line tools).
+Note: Currently, only building is supported.
+
+- To deal with older dependencies, `yarn` must be used as well as `node` v16.
+    - If it an older version of `node` is desired: 
+        - `npm install -g n` to install `n`, a very simplistic node version manager
+        - `n 16.17.1` to install `node` the final version of `node` v16
+- `n use 16.17.1 <path to yarn> install` to install dependencies
+- `n use 16.17.1 <path to yarn> run build-darwin` to build darwin
 
 #### Getting the bleeding edge
 If you're interested in running the latest in-development version but don't want to compile source code yourself, you can can get pre-built nightly binaries on [GitHub Actions](https://github.com/GitSquared/edex-ui/actions): click the latest commits, and download the artifacts bundle for your OS.
